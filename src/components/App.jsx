@@ -1,49 +1,55 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { ContactForm } from "./ContactForm/ContactForm";
-import { ContactList } from "./ContactList/ContactList";
-import { ContactsFilter } from "./ContactFilter/ContactFilter";
-import { addContact, deleteContact, fetchContacts } from "redux/ContactSlice";
+// import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { ContactForm } from "./ContactForm/ContactForm";
+// import { ContactList } from "./ContactList/ContactList";
+// import { ContactsFilter } from "./ContactFilter/ContactFilter";
+// import { addContact, deleteContact, fetchContacts } from "redux/ContactSlice";
+import { fetchContacts } from "redux/ContactSlice";
 // import { selectContacts, selectFilteredName } from "../redux/selectors";
 // import { setFilter } from "../redux/Contacts/filterSlice";
-import { getFilteredContacts } from "../redux/selectors";
+// import { getFilteredContacts } from "../redux/selectors";
+import { Route, Routes } from "react-router-dom";
+import { SharedLayout } from "./SharedLayout/SharedLayout";
+import Home from 'pages/Home';
+import { Register } from "pages/Register";
+import { Login } from "pages/Login";
+import Contact from "pages/Contact";
+import { PrivateRoute } from "./PrivateRoute";
 
 export const App = () => {  
   const dispatch = useDispatch();
-  const contacts = useSelector(getFilteredContacts);
+  // const contacts = useSelector(getFilteredContacts);
   // const filter = useSelector(selectFilteredName);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const handleAddContact = async (contact) => {
-    try {
-      await dispatch(addContact(contact));
-    } catch (error) {
-      console.log("Error adding contact:", error);
-    }
-  };
+  // const handleAddContact = async (contact) => {
+  //   try {
+  //     await dispatch(addContact(contact));
+  //   } catch (error) {
+  //     console.log("Error adding contact:", error);
+  //   }
+  // };
 
-  const handleDeleteContact = async (contactId) => {
-    try {
-      await dispatch(deleteContact(contactId));
-    } catch (error) {
-      console.log("Error deleting contact:", error);
-    }
-  };
+  // const handleDeleteContact = async (contactId) => {
+  //   try {
+  //     await dispatch(deleteContact(contactId));
+  //   } catch (error) {
+  //     console.log("Error deleting contact:", error);
+  //   }
+  // };
 
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm addContact={handleAddContact} />
-      <h2>Contacts</h2>
-      <ContactsFilter />
-      {contacts.length > 0 ? (
-        <ContactList handleDeleteContact={handleDeleteContact} />
-      ) : (
-          <p>There are no contacts in your phonebook.</p>
-      )}
-    </div>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/contact' element={<PrivateRoute redirectTo="/login" component={<Contact />}/>} />
+      </Route>
+    </Routes>
   );
 };

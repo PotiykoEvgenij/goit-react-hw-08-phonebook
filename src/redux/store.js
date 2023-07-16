@@ -3,8 +3,10 @@ import { contactsReducer } from "./ContactSlice";
 import filterReducer from "./Contacts/filterSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
+import authReducer from 'redux/auth/authSlice';
 
 const rootReducer = combineReducers({
+    auth: authReducer,
     contacts: contactsReducer,
     filter: filterReducer,
 });
