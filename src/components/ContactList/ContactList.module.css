@@ -1,0 +1,19 @@
+.contactList {
+    margin: auto;
+    width: 400px;
+    padding-left: 0px;
+}
+
+.contactList li {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.contactButton {
+    margin-left: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+}
