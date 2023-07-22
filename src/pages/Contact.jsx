@@ -2,8 +2,17 @@ import { ContactsFilter } from 'components/ContactFilter/ContactFilter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import React from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchContacts } from 'redux/ContactSlice';
 
 export default function Contact() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+  
   return (
     <div>
       <h1>Phonebook</h1>

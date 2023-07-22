@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 // import { ContactList } from "./ContactList/ContactList";
 // import { ContactsFilter } from "./ContactFilter/ContactFilter";
 // import { addContact, deleteContact, fetchContacts } from "redux/ContactSlice";
-import { fetchContacts } from "redux/ContactSlice";
+// import { fetchContacts } from "redux/ContactSlice";
 // import { selectContacts, selectFilteredName } from "../redux/selectors";
 // import { setFilter } from "../redux/Contacts/filterSlice";
 // import { getFilteredContacts } from "../redux/selectors";
@@ -17,14 +17,19 @@ import { Login } from "pages/Login";
 import Contact from "pages/Contact";
 import { PrivateRoute } from "./PrivateRoute";
 import { RestrictedRoute } from "./RestrictedRoute";
+// import { selectIsLoggedIn } from "redux/auth/authSelectors";
+import { refreshUser } from "redux/auth/authOperations";
+import { useAuth } from "hooks";
 
 export const App = () => {  
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+  // const isLoggedIn = useSelector(selectIsLoggedIn)
   // const contacts = useSelector(getFilteredContacts);
   // const filter = useSelector(selectFilteredName);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
   // const handleAddContact = async (contact) => {
@@ -43,7 +48,9 @@ export const App = () => {
   //   }
   // };
 
-  return (
+  return isRefreshing ? (
+      <h1>Loading...</h1>
+     ) :  (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />

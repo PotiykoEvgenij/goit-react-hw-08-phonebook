@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register } from "./authOperations";
+import { refreshUser, register } from "./authOperations";
 // import { persistReducer, persistStore } from "redux-persist";
 // import storage from "redux-persist/lib/storage";
 
@@ -24,6 +24,7 @@ const initialState = {
     token: null,
     error: null,
     isLoading: false,
+    isRefreshing: true,
 };
 
 const authSlice = createSlice({
@@ -39,6 +40,17 @@ const authSlice = createSlice({
                 state.token = action.payload.token;
                 state.isLoading = false;
             }).addCase(register.rejected, (state, action) => {
+                state.error = action.payload;
+                state.isLoading = false;
+            }).addCase(refreshUser.pending, (state) => {
+                state.isRefreshing = true;
+                state.isLoading = true;
+                state.error = null;
+            }).addCase(refreshUser.fulfilled, (state, action) => {
+                state.isRefreshing = false;
+                state.isLoading = false;
+            }).addCase(refreshUser.rejected, (state, action) => {
+                state.isRefreshing = false;
                 state.error = action.payload;
                 state.isLoading = false;
             });
