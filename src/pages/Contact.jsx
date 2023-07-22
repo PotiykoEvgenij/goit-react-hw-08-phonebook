@@ -1,7 +1,7 @@
-import React from 'react'
+import { ContactsFilter } from 'components/ContactFilter/ContactFilter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
-import { ContactsFilter } from 'components/ContactFilter/ContactFilter';
+import React from 'react';
 
 export default function Contact() {
   return (

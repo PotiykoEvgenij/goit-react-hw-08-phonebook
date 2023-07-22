@@ -16,6 +16,7 @@ import { Register } from "pages/Register";
 import { Login } from "pages/Login";
 import Contact from "pages/Contact";
 import { PrivateRoute } from "./PrivateRoute";
+import { RestrictedRoute } from "./RestrictedRoute";
 
 export const App = () => {  
   const dispatch = useDispatch();
@@ -46,9 +47,9 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/contact' element={<PrivateRoute redirectTo="/login" component={<Contact />}/>} />
+        <Route path='/register' element={<RestrictedRoute redirectTo="/contact" component={<Register />} />} />
+        <Route path='/login' element={<RestrictedRoute redirectTo="/contact" component={<Login />} />} />
+        <Route path='/contact' element={<PrivateRoute redirectTo="/login" component={<Contact />} />} />
       </Route>
     </Routes>
   );
