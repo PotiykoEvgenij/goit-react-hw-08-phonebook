@@ -21,9 +21,9 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-    key: 'root',
+    key: 'token',
     storage,
-    whitelist:  ['auth'],
+    whitelist:  ['token'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -38,8 +38,7 @@ export const store = configureStore({
     }),
 });
 
-// const persistor = persistStore(store);
+
 
 export const persistor = persistStore(store);
 
-// export { store, persistor };
