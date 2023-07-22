@@ -5,6 +5,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/ContactSlice';
+// import { selectContacts } from 'redux/selectors';
 
 export default function Contact() {
   const dispatch = useDispatch();
