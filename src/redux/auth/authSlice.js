@@ -20,9 +20,10 @@ import { logIn, logOut, refreshUser, register } from "./authOperations";
 // export { store, persistor };
 
 const initialState = {
-    user: null,
+    user: { name: null,  email: null },
     token: null,
     error: null,
+    isLoggedIn: false,
     isLoading: false,
     isRefreshing: true,
 };
@@ -69,5 +70,7 @@ const authSlice = createSlice({
 });
     
 // const persistedReducer = persistReducer(persistConfig, authSlice.reducer);
+
+// export default authReducer = authSlice.reducer;
 
 export default authSlice.reducer;

@@ -4,11 +4,15 @@ import { ContactList } from 'components/ContactList/ContactList';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/ContactSlice';
+import { fetchContacts } from 'redux/OperationsContact';
+// import { selectContacts, selectIsLoading } from 'redux/selectors';
+// import { fetchContacts } from 'redux/ContactSlice';
 // import { selectContacts } from 'redux/selectors';
 
 export default function Contact() {
   const dispatch = useDispatch();
+  // const contacts = useSelector(selectContacts);
+  // const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -22,5 +26,5 @@ export default function Contact() {
       <ContactsFilter />
       <ContactList />
     </div>
-  )
+  );
 };
