@@ -19,7 +19,7 @@ export const ContactList = () => {
       <UnorderedList listStyleType="none" px="0">
         {contacts.map((contact) => (
           <ListItem key={contact.id} bg="#f2f2f2" my="1" borderRadius="4px" display="flex" alignItems="center" justifyContent="space-between" marginBottom="1rem">
-            <Text marginLeft="1rem">{contact.name}: {contact.number}</Text>
+            <Text marginLeft="1rem" color="blue.600">{contact.name}: {contact.number}</Text>
             <Button onClick={() => handleDelete(contact.id)} colorScheme="red" size="sm">
               &#10060;
             </Button>
