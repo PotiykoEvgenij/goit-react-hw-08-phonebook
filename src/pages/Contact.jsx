@@ -5,26 +5,26 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchContacts } from 'redux/OperationsContact';
-// import { selectContacts, selectIsLoading } from 'redux/selectors';
-// import { fetchContacts } from 'redux/ContactSlice';
-// import { selectContacts } from 'redux/selectors';
+import { Box, Heading } from "@chakra-ui/react";
 
 export default function Contact() {
   const dispatch = useDispatch();
-  // const contacts = useSelector(selectContacts);
-  // const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
   
   return (
-    <div>
-      <h1>Phonebook</h1>
+    <Box textAlign="center" p="2rem">
+      <Heading as="h1" size="xl" mb="2rem" color="blue.500">
+        Phonebook
+      </Heading>
       <ContactForm />
-      <h2>Contacts</h2>
+      <Heading as="h2" size="lg" mt="2rem" mb="1rem">
+        Contacts
+      </Heading>
       <ContactsFilter />
       <ContactList />
-    </div>
+    </Box>
   );
 };

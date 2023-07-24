@@ -3,17 +3,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { NavLink, Outlet } from 'react-router-dom';
 import { logOut } from 'redux/auth/authOperations';
-
-// const pagesForAuthenticatedUser = [
-//     { title: 'Home', path: '/' },
-//     { title: 'Contact', path: '/contact' },
-// ];
-
-// const pagesForUnauthenticatedUser = [
-//     { title: 'Home', path: '/' },
-//     { title: 'Register', path: '/register' },
-//     { title: 'Login', path: '/login' },
-// ];
+import { Box, Flex, Container, Link, Heading, Button } from "@chakra-ui/react";
 
 export const SharedLayout = () => {
     const dispatch = useDispatch();
@@ -25,25 +15,47 @@ export const SharedLayout = () => {
     };
 
     return (
-        <>
-            <div>
-                <NavLink to='/'>Home</NavLink>
-                {isLoggedIn && <NavLink to = "/contact">Contacts</NavLink>}
-            </div>
-            <div>
-                {isLoggedIn ? (
-                    <>
-                    <h1>Welcome, {user.name}</h1>
-                    <button onClick={handleLogOut}>Logout</button>
-                    </>
-                ) : (
-                    <>
-                    <NavLink to="/login">Login</NavLink>
-                    <NavLink to="/register">Register</NavLink>
-                    </>
-                )}
-            </div>
-            <Outlet />
-        </>
+        <Box>
+            <Box bg="#f0f0f0" py="1rem">
+                <Container maxW="100%">
+                    <Flex justify="space-between" align="center">
+                        <Flex>
+                            <Link as={NavLink} to="/" color="blue" fontSize="16px" marginRight="10px" textDecoration="none">
+                                Home
+                            </Link>
+                            {isLoggedIn && (
+                                <Link as={NavLink} to="/contact" color="blue" fontSize="16px" marginRight="10px" textDecoration="none">
+                                    Contacts
+                                </Link>
+                            )}
+                        </Flex>
+                        <Flex>
+                            {isLoggedIn ? (
+                                <>
+                                    <Heading as="h2" size="lg" mr="1rem">
+                                        Welcome, {user.name}
+                                    </Heading>
+                                    <Button colorScheme="blue" onClick={handleLogOut}>
+                                        Logout
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Link as={NavLink} to="/login" color="blue" fontSize="16px" marginRight="10px" textDecoration="none">
+                                        Login
+                                    </Link>
+                                    <Link as={NavLink} to="/register" color="blue" fontSize="16px" textDecoration="none">
+                                        Register
+                                    </Link>
+                                </>
+                            )}
+                        </Flex>
+                    </Flex>
+                </Container>
+            </Box>
+            <Box pt="2rem">
+                <Outlet />
+            </Box>
+        </Box>
     )
 };

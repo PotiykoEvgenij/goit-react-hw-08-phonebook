@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/Contacts/filterSlice';
 import { selectFilteredName } from 'redux/selectors';
 // import PropTypes from 'prop-types';
-import styles from './ContactFilter.module.css'
+// import styles from './ContactFilter.module.css'
+import { Box, Input, FormControl } from "@chakra-ui/react";
 
 export const ContactsFilter = () => {
   const dispatch = useDispatch();
@@ -14,18 +15,17 @@ export const ContactsFilter = () => {
   };
     
   return (
-    <div>
-      <label className={styles.formFilter}>
-        <span className={styles.formTitle}>Find contacts by name</span>
-        <input
-          className={styles.filterInput}
+    <Box w="500px" m="0 auto">
+      <FormControl>
+        {/* <FormLabel>Find contacts by name</FormLabel> */}
+        <Input
           type="text"
           placeholder="Search contacts"
           value={filter}
           onChange={handleSetFilter}
         />
-        </label>
-    </div>
+      </FormControl>
+    </Box>
   );
 };
 

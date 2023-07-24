@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
+import { Box, Input, Button } from "@chakra-ui/react";
 
 export const Register = () => {
     const dispatch = useDispatch();
@@ -14,13 +15,13 @@ export const Register = () => {
     };
 
     return (
-        <div>
+        <Box w="300px" m="0 auto">
             <form onSubmit={handleSubmit}>
-                <input type='text' name='name'/>
-                <input type='email' name='email'/>
-                <input type='password' name='password'/>
-                <button type='submit'>Register</button>
+                <Input type='text' name='name' placeholder="Name" mb="1rem" />
+                <Input type='email' name='email' placeholder="Email" mb="1rem" />
+                <Input type='password' name='password' placeholder="Password" mb="1rem" />
+                <Button type='submit' colorScheme="blue">Register</Button>
             </form>
-        </div>
+        </Box>
     )
 };

@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/OperationsContact'
-// import PropTypes from 'prop-types';
-import styles from './ContactForm.module.css'
-// import { selectContacts } from 'redux/selectors';
+import { addContact } from '../../redux/OperationsContact';
+import { Box, Input, Button } from "@chakra-ui/react";
+// import styles from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  // const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -33,35 +31,35 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <label className={styles.formLabel}>
-        <span className={styles.formTittle}>Name</span>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+    <Box w="500px" m="0 auto">
+      <form onSubmit={handleSubmit}>
+        <Input
+          type='text'
+          name='name'
+          placeholder="Name"
+          mb="1rem"
+          pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
         />
-      </label>
-      <label className={styles.formLabel}>
-        <span className={styles.formTittle}>Number</span>
-        <input
-        type="tel"
-        name="number"
-        placeholder="Number"
-        pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-        value={number}
-        onChange={(e) => setNumber(e.target.value)}
+        <Input
+          type='tel'
+          name='number'
+          placeholder="Number"
+          mb="1rem"
+          pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          value={number}
+          onChange={(e) => setNumber(e.target.value)}
+          required
         />
-        </label>
-      <button type="submit" className={styles.formButton}>Add Contact</button>
-    </form>
+        <Button type="submit" colorScheme="blue">
+          Add Contact
+        </Button>
+      </form>
+    </Box>
   );
 };
 
