@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/OperationsContact';
 import { Box, Input, Button } from "@chakra-ui/react";
-// import styles from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');

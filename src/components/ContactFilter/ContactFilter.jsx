@@ -17,7 +17,6 @@ export const ContactsFilter = () => {
   return (
     <Box w="500px" m="0 auto">
       <FormControl>
-        {/* <FormLabel>Find contacts by name</FormLabel> */}
         <Input
           type="text"
           placeholder="Search contacts"

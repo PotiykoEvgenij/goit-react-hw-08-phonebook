@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/OperationsContact';
 import { getFilteredContacts } from 'redux/selectors';
-// import styles from './ContactList.module.css';
 import { Box, UnorderedList, ListItem, Button, Text } from "@chakra-ui/react";
 
 
